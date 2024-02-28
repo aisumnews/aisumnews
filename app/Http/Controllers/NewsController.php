@@ -1,0 +1,56 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\LangNews;
+use App\Models\News;
+use Illuminate\Http\Request;
+
+class NewsController extends Controller
+{
+    //
+    public function index()
+    {
+        return News::all();
+    }
+    public function store(Request $request)
+    {
+        $news = News::create($request->all());
+        return response()->json($news, 201);
+    }
+    public function countryLanguage($language, $topic)
+    {
+        if ($language == 'eng_Latn') {
+            return News::where('topic', $topic)
+                ->orderBy('published_at', 'desc')
+                ->take(1)
+                ->get();
+        } else {
+            return LangNews::where('language', $language)
+                ->where('topic', $topic)
+                ->orderBy('published_at', 'desc')
+                ->take(1)
+                ->paginate(1);
+        }
+    }
+    public function langTopicId($language, $topic, $id)
+    {
+        if ($language == 'eng_Latn') {
+            $news = News::where('language', 'eng_Latn')
+            ->where('topic', $topic)
+                ->where('id', $id)
+                ->orderBy('published_at', 'desc')
+                ->paginate(1)
+                ->get();
+            return view('lang_news', ['news' => $news]);
+        } else {
+            $news = LangNews::where('language', $language)
+                ->where('topic', $topic)
+                ->where('id', $id)
+                ->orderBy('published_at', 'desc')
+                ->paginate(1)
+                ->get();
+                return view('lang_news', ['news' => $news]);
+        }
+    }
+}
