@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('publisher')->nullable();
             $table->string('url')->nullable();
             $table->string('published_at');
+            $table->tinyInteger('active')->default(1);
             $table->timestamps();
         });
     }

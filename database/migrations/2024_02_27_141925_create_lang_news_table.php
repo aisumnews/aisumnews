@@ -16,6 +16,8 @@ return new class extends Migration
             $table->foreignId('news_id')->constrained('news');
             $table->string('title');
             $table->text('content');
+            $table->string('author')->nullable();
+            $table->string('image')->nullable();
             $table->string('country')->nullable();
             $table->string('language')->default('eng_Latn');
             $table->string('topic')->default('TOPNEWS');
@@ -23,6 +25,7 @@ return new class extends Migration
             $table->string('publisher')->nullable();
             $table->string('url')->nullable();
             $table->string('published_at');
+            $table->tinyInteger('active')->default(1);
             $table->timestamps();
         });
     }

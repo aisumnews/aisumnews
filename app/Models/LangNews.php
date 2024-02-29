@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class LangNews extends Model
 {
     use HasFactory;
-    public $fillable = ['news_id', 'title', 'content','country', 'language', 'topic', 'publisher', 'url', 'published_at'];
+    public $fillable = ['news_id', 'title', 'content', 'author','image', 'country', 'language', 'topic', 'publisher', 'url', 'published_at'];
 
     public function news()
     {
