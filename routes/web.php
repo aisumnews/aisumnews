@@ -17,5 +17,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/{language}', [NewsController::class, 'langNews'])->name('lang');
 //Route::get('/{language}/{topic}/{id}', [NewsController::class, 'langTopicId'])->name('langTopicId');
 Route::get('/{language}/{topic}', [NewsController::class, 'langTopic'])->name('langTopic');

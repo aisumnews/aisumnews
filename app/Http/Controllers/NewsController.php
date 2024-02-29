@@ -18,6 +18,19 @@ class NewsController extends Controller
         $news = News::create($request->all());
         return response()->json($news, 201);
     }
+    public function langNews($language)
+    {
+        if ($language == 'eng_Latn') {
+            $news = News::where('language', 'eng_Latn')
+                ->orderBy('published_at', 'desc')
+                ->paginate(10);
+        } else {
+            $news = LangNews::where('language', $language)
+                ->orderBy('published_at', 'desc')
+                ->paginate(10);
+        }
+        return view('lang_news', ['news' => $news]);
+    }
     public function countryLanguage($language, $topic)
     {
         if ($language == 'eng_Latn') {
