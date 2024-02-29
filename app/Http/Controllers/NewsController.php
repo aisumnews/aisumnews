@@ -68,7 +68,7 @@ class NewsController extends Controller
                 ->where('active', 1)
                 ->orderBy('published_at', 'desc')
                 ->get();
-            //return view('lang_news', ['news' => $news]);
+            return view('lang_news', ['news' => $news]);
             return $news;
         }
     }
