@@ -53,4 +53,23 @@ class NewsController extends Controller
                 return view('lang_news', ['news' => $news]);
         }
     }
+    public function langTopic($language, $topic)
+    {
+        if ($language == 'eng_Latn') {
+            $news = News::where('topic', $topic)
+                ->where('active', 1)
+                ->orderBy('published_at', 'desc')
+                ->get();
+            //return view('lang_news', ['news' => $news]);
+            return $news;
+        } else {
+            $news = LangNews::where('language', $language)
+                ->where('topic', $topic)
+                ->where('active', 1)
+                ->orderBy('published_at', 'desc')
+                ->get();
+            //return view('lang_news', ['news' => $news]);
+            return $news;
+        }
+    }
 }
