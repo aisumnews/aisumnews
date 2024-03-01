@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>AI Summarized News in {{ $lang->language_name }} Language</title>
 </head>
 
 <body>
@@ -12,14 +13,14 @@
             <div class="col-md-2">
             </div>
             <div class="col-md-8">
-
+                <h1>AISumNews in {{ $lang->language_name }} Language</h1>
                 @foreach ($news as $n)
                 <div class="card mb-3">
                     <img class="card-img-top" src="{{ empty($n->image)?'/images/default.jpeg': $n->image}}" alt="{{ $n->title }}" height="300" width="310">
                     <div class="card-body">
                         <h5 class="card-title">{{ str_replace('।', '', $n->title) }}</h5>
                         <p class="card-text">{{ $n->content }}</p>
-                        <p class="card-text"><small class="text-muted">{{ $n->published_at }} Last updated 3 mins ago</small></p>
+                        <p class="card-text"><small class="text-muted">{{ $n->published_at }} Original News on <a target="_blank" href="{{ $n->url }}" class="text-muted" style="text-decoration:none;">{{ $n->publisher}}</a></small></p>
                     </div>
                 </div>
                 @endforeach

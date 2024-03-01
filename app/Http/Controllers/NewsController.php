@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\LangNews;
+use App\Models\Language;
 use App\Models\News;
 use Illuminate\Http\Request;
 
@@ -20,19 +21,22 @@ class NewsController extends Controller
     }
     public function langNews($language)
     {
+        $lang = Language::where('language_code', $language)->first();
+
         if ($language == 'eng_Latn') {
             $news = News::where('language', 'eng_Latn')
-                ->orderBy('published_at', 'desc')
+                ->orderBy('id', 'desc')
                 ->paginate(10);
         } else {
             $news = LangNews::where('language', $language)
-                ->orderBy('published_at', 'desc')
+                ->orderBy('id', 'desc')
                 ->paginate(10);
         }
-        return view('lang_news', ['news' => $news]);
+        return view('lang_news', ['news' => $news, 'lang' => $lang]);
     }
     public function countryLanguage($language, $topic)
     {
+        $lang = Language::where('language_code', $language)->first();
         if ($language == 'eng_Latn') {
             return News::where('topic', $topic)
                 ->orderBy('published_at', 'desc')
@@ -48,6 +52,7 @@ class NewsController extends Controller
     }
     public function langTopicId($language, $topic, $id)
     {
+        $lang = Language::where('language_code', $language)->first();
         if ($language == 'eng_Latn') {
             $news = News::where('language', 'eng_Latn')
             ->where('topic', $topic)
@@ -55,7 +60,7 @@ class NewsController extends Controller
                 ->orderBy('published_at', 'desc')
                 ->paginate(1)
                 ->get();
-            return view('lang_news', ['news' => $news]);
+            return view('lang_news', ['news' => $news, 'lang' => $lang]);
         } else {
             $news = LangNews::where('language', $language)
                 ->where('topic', $topic)
@@ -63,7 +68,7 @@ class NewsController extends Controller
                 ->orderBy('published_at', 'desc')
                 ->paginate(1)
                 ->get();
-                return view('lang_news', ['news' => $news]);
+                return view('lang_news', ['news' => $news, 'lang' => $lang]);
         }
     }
     public function langTopic($language, $topic)
