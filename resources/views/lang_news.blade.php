@@ -12,7 +12,7 @@
         <div class="row">
             <div class="col-md-2">
             </div>
-            <div class="col-md-6">
+            <div class="col-md-8">
                 <h1>AISumNews in {{ $lang->language_name }} Language</h1>
                 @foreach ($news as $n)
                 <div class="card mb-3">
@@ -28,10 +28,11 @@
                     {{ $news->links() }}
                 </div>
             </div>
-        </div>
-        <div class="col-md-2">
+            <div class="col-md-2">
             <div class="text-muted">AISumNews uses AI to generate and translate text. Please be informed that AI may give inaccurate information.
         </div>
+        </div>
+        
     </div>
 
     <!-- script -->
