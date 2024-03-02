@@ -18,7 +18,7 @@
                 <div class="row">
                     @foreach ($langs as $l)
 
-                    <div class="col-6">
+                    <div class="col-12">
                         <a href="/{{ $l->language_code }}">
                             <span>{{$l->language_name}} ({{$l->language_code}})</span>
                         </a>
