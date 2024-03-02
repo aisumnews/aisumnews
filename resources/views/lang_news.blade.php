@@ -12,7 +12,7 @@
         <div class="row">
             <div class="col-md-2">
             </div>
-            <div class="col-md-8">
+            <div class="col-md-6">
                 <h1>AISumNews in {{ $lang->language_name }} Language</h1>
                 @foreach ($news as $n)
                 <div class="card mb-3">
