@@ -15,7 +15,7 @@ The server side runs in the background which is not open source. The web based i
 
 ## Installation and Development
 
-If you want to try the application you need a working laravel 10.x with php 8 and composer.3 and MySQl database.
+If you want to try the application you need a working laravel 10.x with php >= 8.3 and composer >=2.4 and MySQl database.
 
 ### Requirements
 - PHP >= 8.3
