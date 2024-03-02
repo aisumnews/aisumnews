@@ -24,7 +24,7 @@
                     </div>
                 </div>
                 @endforeach
-                <div class="nav Pagination">
+                <div class="nav ">
                     {{ $news->links() }}
                 </div>
             </div>
