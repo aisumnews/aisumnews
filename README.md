@@ -259,6 +259,13 @@ If you want to try the application you need a working laravel 10.x with php 8 an
     Chinese (Traditional) (zho_Hant)
     Standard Malay (zsm_Latn)
     Zulu (zul_Latn)
+
+## Screenshots
+
+![English News](/screenshots/eng_news.jpeg)
+![Home Page](/screenshots/home_page.jpeg)
+![Hindi News](/screenshots/hindi_news.jpeg)
+![Portuguese News](/screenshots/port_news.jpeg)
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
