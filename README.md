@@ -50,6 +50,12 @@ If you want to try the application you need a working laravel 10.x with php 8 an
 - Languages
     There are currently only (208) languages around the world are supported. Out of which only 22 languages are from India. We will add many more in future with your contributions.
 
+## Screenshots
+![Home Page](/screenshots/home_page.jpeg)
+![English News](/screenshots/eng_news.jpeg)
+![Hindi News](/screenshots/hindi_news.jpeg)
+![Portuguese News](/screenshots/port_news.jpeg)
+
 ## Supported Languages
     Assamese (asm_Beng)
     Bengali (ben_Beng)
@@ -260,12 +266,7 @@ If you want to try the application you need a working laravel 10.x with php 8 an
     Standard Malay (zsm_Latn)
     Zulu (zul_Latn)
 
-## Screenshots
 
-![English News](/screenshots/eng_news.jpeg)
-![Home Page](/screenshots/home_page.jpeg)
-![Hindi News](/screenshots/hindi_news.jpeg)
-![Portuguese News](/screenshots/port_news.jpeg)
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+The AISumNews application is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
