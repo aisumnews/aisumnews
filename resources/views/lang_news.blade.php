@@ -24,7 +24,7 @@
                     </div>
                 </div>
                 @endforeach
-                <div class="text-center">
+                <div class="col-auto text-center">
                     {{ $news->links() }}
                 </div>
             </div>
