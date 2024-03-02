@@ -16,7 +16,7 @@
                 <h1>AISumNews in {{ $lang->language_name }} Language</h1>
                 @foreach ($news as $n)
                 <div class="card mb-3">
-                    <img class="card-img-top" src="{{ empty($n->image)?'/images/default.jpeg': $n->image}}" alt="{{ $n->title }}" height="300" width="310">
+                    <img class="card-img-top" src="{{ empty($n->image)?'/images/default.jpeg': $n->image}}" alt="{{ $n->title }}" >
                     <div class="card-body">
                         <h5 class="card-title">{{ str_replace('।', '', $n->title) }}</h5>
                         <p class="card-text">{{ $n->content }}</p>
