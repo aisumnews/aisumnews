@@ -29,7 +29,7 @@
                 </div>
             </div>
             <div class="col-md-2">
-            <div class="text-muted">AISumNews uses AI to generate and translate text. Please be informed that AI may give inaccurate information.
+            <div class="text-muted sticky">AISumNews uses AI to generate and translate text. Please be informed that AI may give inaccurate information.
         </div>
         </div>
         
