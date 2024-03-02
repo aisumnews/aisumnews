@@ -7,7 +7,7 @@
 </p>
 
 ## About AISumNews
-AISumNews or shortened AI Summarized News is an open source application for displaying summarized news content from around the web.
+AISumNews or shortened for AI Summarized News is an open source application for displaying summarized news content from around the web.
 
 The application is build using **Laravel** framework.
 
