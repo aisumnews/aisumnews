@@ -28,7 +28,7 @@
                     @endforeach
                 </div>
                 <div class="text-center">
-                    <div><i style="color: red;">&hearts;</i> Brought to you by <a href="https://www.aisumnews.com" target="_blank">AISumNews</a></div>
+                    <div><i style="color: red;">&hearts;</i> Brought to you by <a href="https://aisumnews.com" target="_blank">AISumNews</a></div>
                 </div>
             </div>
         </div>
