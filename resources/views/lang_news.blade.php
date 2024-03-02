@@ -24,7 +24,7 @@
                     </div>
                 </div>
                 @endforeach
-                <div class="col-auto text-center">
+                <div class="nav Pagination">
                     {{ $news->links() }}
                 </div>
             </div>
