@@ -25,12 +25,12 @@
 
             <div id="navbarBasicExample" class="navbar-menu">
                 <div class="navbar-start">
-                    <a class="navbar-item">
+                    <a class="navbar-item" href="/{{ $lang->language_code}}">
                         Home
                     </a>
 
-                    <a class="navbar-item">
-                        Documentation
+                    <a class="navbar-item" href="/{{$lang->language_code}}/top news">
+                        Top News
                     </a>
 
                     <div class="navbar-item has-dropdown is-hoverable">
@@ -39,18 +39,31 @@
                         </a>
 
                         <div class="navbar-dropdown">
-                            <a class="navbar-item">
-                                About
+                            <a class="navbar-item" href="/{{$lang->language_code}}/world">
+                                World
                             </a>
-                            <a class="navbar-item">
-                                Jobs
+                            <a class="navbar-item" href="/{{$lang->language_code}}/business">
+                                Business
                             </a>
-                            <a class="navbar-item">
-                                Contact
+                            <a class="navbar-item" href="/{{$lang->language_code}}/technology">
+                                Technology
                             </a>
+                            <a class="navbar-item" href="/{{$lang->language_code}}/science">
+                                Science
+                            </a>
+                            <a class="navbar-item" href="/{{$lang->language_code}}/health">
+                                Health
+                            </a>
+                            <a class="navbar-item" href="/{{$lang->language_code}}/entertainment">
+                                Entertainment
+                            </a>
+                            <a class="navbar-item" href="/{{$lang->language_code}}/sports">
+                                Sports
+                            </a>
+
                             <hr class="navbar-divider">
                             <a class="navbar-item">
-                                Report an issue
+                                About
                             </a>
                         </div>
                     </div>
@@ -71,7 +84,7 @@
             </div>
         </nav>
     </section>
-    
+
     <div class="container">
         <section class="hero is-primary">
             <div class="hero-body">
