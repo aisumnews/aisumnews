@@ -55,7 +55,7 @@ class NewsController extends Controller
         $lang = Language::where('language_code', $language)->first();
         if ($language == 'eng_Latn') {
             $news = News::where('language', 'eng_Latn')
-            ->where('topic', $topic)
+                ->where('topic', $topic)
                 ->where('id', $id)
                 ->orderBy('published_at', 'desc')
                 ->paginate(1)
@@ -68,26 +68,43 @@ class NewsController extends Controller
                 ->orderBy('published_at', 'desc')
                 ->paginate(1)
                 ->get();
-                return view('lang_news', ['news' => $news, 'lang' => $lang]);
+            return view('lang_news', ['news' => $news, 'lang' => $lang]);
         }
     }
     public function langTopic($language, $topic)
     {
+        $topic = strtoupper($topic);
+        $lang = Language::where('language_code', $language)->first();
         if ($language == 'eng_Latn') {
             $news = News::where('topic', $topic)
                 ->where('active', 1)
+                ->orderBy('id', 'desc')
                 ->orderBy('published_at', 'desc')
-                ->get();
-            //return view('lang_news', ['news' => $news]);
-            return $news;
+                ->paginate(10);
+            return view(
+                'topic.lang_topic',
+                [
+                    'news' => $news,
+                    'lang' => $lang,
+                    'topic' => $topic
+                ]
+            );
+            //return $news;
         } else {
             $news = LangNews::where('language', $language)
                 ->where('topic', $topic)
                 ->where('active', 1)
+                ->orderBy('id', 'desc')
                 ->orderBy('published_at', 'desc')
-                ->get();
-            return view('lang_news', ['news' => $news]);
-            return $news;
+                ->paginate(10);
+                return view(
+                    'topic.lang_topic',
+                    [
+                        'news' => $news,
+                        'lang' => $lang,
+                        'topic' => $topic
+                    ]
+                );
         }
     }
 }
