@@ -270,3 +270,7 @@ If you want to try the application you need a working laravel 10.x with php >= 8
 ## License
 
 The AISumNews application is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+## Contributor
+
+Hi I developed this **aisumnews** :). I speak Bodo, however I feel any content news/information should be available in all the languages. Currently my personal translation engine and summarization engine can not serve multiple translations at high rate. Which may result in delayed/no translation for specific languages. Celery feeds too much data to translation engine, however it will be overcome in future if I own high performance machines. Please visit my profile for more about me [Sanjib Narzary](https://sanjibnarzary.github.io)
