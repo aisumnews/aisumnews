@@ -87,7 +87,7 @@
     </section>
 
     <div class="container">
-        <section class="hero is-warning">
+        <section class="hero {{ $color }}">
             <div class="hero-body">
                 <p class="title">
                     {{ $topic }}
