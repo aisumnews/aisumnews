@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="{{ $lang->language_code=='eng_Latn'?'en':preg_split ('/\_/', $lang->language_code)[0] }}">
 
 <head>
     <meta charset="utf-8">
