@@ -1,9 +1,9 @@
 @if ($paginator->hasPages())
 <nav class="pagination is-rounded" role="navigation" aria-label="pagination">
     @if ($paginator->onFirstPage())
-    <a class="pagination-previous is-disabled">Previous</a>
+    <a class="pagination-previous is-disabled">Prev</a>
     @else
-    <a class="pagination-previous" href="{{ $paginator->previousPageUrl() }}">Previous</a>
+    <a class="pagination-previous" href="{{ $paginator->previousPageUrl() }}">Prev</a>
     @endif
 
     @if ($paginator->onLastPage())
