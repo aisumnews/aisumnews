@@ -4,7 +4,9 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ $topic }} latest news in {{ $lang->language_name }} - AISumNews.com</title>
+    <title>{{ $news->title}} - AISumNews.com</title>
+    <meta name="description" content="{{ $news->content}}">
+    <meta name="keywords" content="{{$topic}}, aisumnews, ai, {{$lang->language_name}}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <style>
         .section {
