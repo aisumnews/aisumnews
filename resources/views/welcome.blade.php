@@ -19,7 +19,7 @@
                     @foreach ($langs as $l)
 
                     <div class="col-6">
-                        <a href="/{{ $l->language_code }}/top news">
+                        <a href="/{{ $l->language_code }}">
                             <span>{{$l->language_name}} ({{$l->language_code}})</span>
                         </a>
                     </div>

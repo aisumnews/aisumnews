@@ -13,9 +13,19 @@
             padding-top: 1rem;
             padding-bottom: 2rem;
         }
-
-        
     </style>
+
+    <!-- Twitter Card //-->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@aisumnews" />
+    <meta name="twitter:creator" content="@SanjibNarzary" />
+    <meta property="og:url" content="{{url()->current()}}" />
+    <meta property="og:title" content="{{ $news->title }}" />
+    <meta property="og:description" content="{{ $news->content }}" />
+    <meta property="og:image" content="{{ $news->image }}" />
+    <!-- Open Graph //-->
+
+
 </head>
 
 <body>
@@ -102,44 +112,45 @@
                 <div class="columns is-centered ">
                     <!-- Make left right button //-->
                     <div class="column is-1 is-hidden-mobile">
-                    <a id="prev" href="{{ empty($prev)?'#':route('topicStory', ['language' => $lang->language_code, 'topic' => strtolower($topic), 'slug' => Str::slug($prev->title, '-'), 'id' => $prev->id]) }}" class="button is-pulled-right {{empty($prev)?'is-disabled':'is-primary '}}"><<</a>
+                        <a id="prev" href="{{ empty($prev)?'#':route('topicStory', ['language' => $lang->language_code, 'topic' => strtolower($topic), 'slug' => Str::slug($prev->title, '-'), 'id' => $prev->id]) }}" class="button is-pulled-right {{empty($prev)?'is-disabled':'is-primary '}}">
+                            << </a>
                     </div>
                     <div class="column is-6">
-                    <div class="card">
-                    <div class="card-image">
-                        <figure class="image is-4by3">
-                            <img src="{{ empty($news->image)?'/images/default.jpeg':$news->image}}" alt="{{ $news->title }}">
-                        </figure>
-                    </div>
-                    <div class="card-content">
-                        <div class="media">
+                        <div class="card">
+                            <div class="card-image">
+                                <figure class="image is-4by3">
+                                    <img src="{{ empty($news->image)?'/images/default.jpeg':$news->image}}" alt="{{ $news->title }}">
+                                </figure>
+                            </div>
+                            <div class="card-content">
+                                <div class="media">
 
-                            <div class="media-content">
-                                <p class="title is-4">{{ $news->title }}</p>
-                                <p class="subtitle is-6"><a target="_blank" class="is-muted" href="{{ $news->url }}">{{ $news->publisher }}</a></p>
+                                    <div class="media-content">
+                                        <p class="title is-4">{{ $news->title }}</p>
+                                        <p class="subtitle is-6"><a target="_blank" class="is-muted" href="{{ $news->url }}">{{ $news->publisher }}</a></p>
+                                    </div>
+                                </div>
+
+                                <div class="content">
+                                    {{ $news->content }}
+                                    <br>
+                                    <a href="#">#{{ $news->topic }}</a> <a href="#">#{{ $lang->language_name }}</a> <a href="#">#{{ $news->country }}</a>
+                                    <br>
+                                    <time datetime="2024-1-1">{{ \Carbon\Carbon::parse($news->published_at)->diffForHumans() }}</time>
+                                    <span class="is-pulled-right">Read more at <a class="link is-right" href="{{ $news->url }}">{{ $news->publisher }}</a></span>
+                                </div>
                             </div>
                         </div>
-
-                        <div class="content">
-                            {{ $news->content }}
-                            <br>
-                            <a href="#">#{{ $news->topic }}</a> <a href="#">#{{ $lang->language_name }}</a> <a href="#">#{{ $news->country }}</a>
-                            <br>
-                            <time datetime="2024-1-1">{{ \Carbon\Carbon::parse($news->published_at)->diffForHumans() }}</time>
-                            <span class="is-pulled-right">Read more at <a class="link is-right" href="{{ $news->url }}">{{ $news->publisher }}</a></span>
-                        </div>
-                    </div>
-                </div>
                     </div>
                     <div class="column is-1 is-hidden-mobile">
                         <a id="next" href="{{ empty($next)?'#':route('topicStory', ['language' => $lang->language_code, 'topic' => strtolower($topic), 'slug' => Str::slug($next->title, '-'), 'id' => $next->id]) }}" class="button {{empty($next)?'is-disabled':'is-primary '}}">>></a>
                     </div>
                 </div>
-                
+
 
             </div>
         </section>
-        
+
     </div>
 
     <div class="container">
