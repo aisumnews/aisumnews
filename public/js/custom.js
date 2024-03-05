@@ -9,6 +9,6 @@ $(document).ready(function () {
 
   });
   $(".navbar-menu").click(function () {
-    $(".navbar-menu").toggleClass("is-active");
+    $(".navbar-item .has-dropdown .is-hoverable").toggleClass("is-active");
   });
 });
