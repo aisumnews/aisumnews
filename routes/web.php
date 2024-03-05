@@ -19,6 +19,9 @@ Route::get('/', function () {
 
     return view('welcome', ['langs' => $langs]);
 });
+Route::get('/{language}/story/{topic}/{slug}/{id}',[
+    NewsController::class,'topicStory'
+])->name('topicStory');
 Route::get('/{language}', [NewsController::class, 'langNews'])->name('lang');
 //Route::get('/{language}/{topic}/{id}', [NewsController::class, 'langTopicId'])->name('langTopicId');
 Route::get('/{language}/{topic}', [NewsController::class, 'langTopic'])->name('langTopic');

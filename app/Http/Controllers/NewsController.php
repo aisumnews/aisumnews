@@ -1,11 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Models\LangNews;
 use App\Models\Language;
 use App\Models\News;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+
 
 class NewsController extends Controller
 {
@@ -13,6 +14,52 @@ class NewsController extends Controller
     public function index()
     {
         return News::all();
+    }
+    public function topicStory($language, $topic, $slug, $id)
+    {
+        $lang = Language::where('language_code', $language)->first();
+        $topic = strtoupper($topic);
+        if ($language == 'eng_Latn') {
+            $news = News::where('id', $id)
+                ->orderBy('published_at', 'desc')
+                ->first();
+            //$prev = $news->links();
+            //get the previous news
+            //  
+            $prev = News::where('id', '<', $id)
+                ->where('topic', $topic)
+                ->orderBy('id', 'desc')
+                ->first();
+            $next = News::where('id', '>', $id)
+                ->where('topic', $topic)
+                ->orderBy('id', 'asc')
+                ->first();
+            //return $news . $prev . $next;
+            if ($slug != Str::slug($news->title, '-')) {
+                return redirect()->route('topicStory', ['language' => $language, 'topic' => strtolower($topic), 'slug' => Str::slug($news->title, '-'), 'id' => $id]);
+            }
+
+            return view('topic.story', ['news' => $news, 'lang' => $lang, 'prev' => $prev, 'next' => $next, 'topic' => $topic]);
+        } else {
+            $news = LangNews::where('language', $language)
+                ->where('id', $id)
+                ->orderBy('published_at', 'desc')
+                ->first();
+            $prev = LangNews::where('id', '<', $id)
+                ->where('topic', $topic)
+                ->where('language', $language)
+                ->orderBy('id', 'desc')
+                ->first();
+            $next = LangNews::where('id', '>', $id)
+                ->where('topic', $topic)
+                ->where('language', $language)
+                ->orderBy('id', 'asc')
+                ->first();
+            if ($slug != Str::slug($news->title, '-')) {
+                return redirect()->route('topicStory', ['language' => $language, 'topic' => strtolower($topic), 'slug' => Str::slug($news->title, '-'), 'id' => $id]);
+            }
+            return view('topic.story', ['news' => $news, 'lang' => $lang, 'prev' => $prev, 'next' => $next, 'topic' => $topic]);
+        }
     }
     public function store(Request $request)
     {
@@ -34,7 +81,7 @@ class NewsController extends Controller
             'ENTERTAINMENT' => 'is-primary',
             'SPORTS' => 'is-link'
         ];
-        
+
         $color = $colors[$topic];
         $lang = Language::where('language_code', $language)->first();
         if ($language == 'eng_Latn') {
