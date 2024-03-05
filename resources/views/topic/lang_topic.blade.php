@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ $topic }} latest news in {{ $lang->language_name }} - AISumNews.com</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+
 </head>
 
 <body>
@@ -265,6 +266,7 @@
             </div>
         </footer>
     </div>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="/js/custom.js">
     </script>
 </body>
