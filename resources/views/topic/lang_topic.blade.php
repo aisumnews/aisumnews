@@ -13,7 +13,7 @@
         <nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
             <div class="navbar-brand">
                 <a class="navbar-item" href="https://aisumnews.com">
-                    <img src="/images/home-logo.png" > 
+                    <img src="/images/home-logo.png">
                     <!-- <h1 class="title is-4">AISumNews</h1> /-->
                 </a>
 
@@ -129,9 +129,143 @@
             </div>
         </section>
         <section class="section">
-            {{ $news->links() }}
+            <div class="container">
+                {{ $news->withQueryString()->links('pagination.custom1') }}
+            </div>
         </section>
     </div>
+
+    <div class="container">
+        <!--   footer starts from here  -->
+        <footer class="footer">
+            <!-- Copyright symbol of company -->
+            <div class="content has-text-centered">
+                <p><img src="/images/home-logo-transparent.png"></p>
+
+            </div>
+
+            <!-- Three columns created using columns class of Bulma -->
+            <div class="columns">
+                <!-- Column 1 -->
+                <div class="column">
+
+                    <!-- Heading is left aligned, medium weight -->
+                    <h4 class="bd-footer-title  
+                 has-text-weight-medium 
+                 has-text-left">
+                        AISumNews
+                    </h4>
+
+                    <!-- footer content -->
+                    <p class="bd-footer-link  
+                has-text-left">
+                        AISumNews is a news website that uses AI to generate news from around the world. We provide news in multiple languages and topics.
+                    </p>
+
+                </div>
+
+                <!-- Column 2 -->
+                <div class="column">
+                    <h4 class="bd-footer-title  
+                 has-text-weight-medium  
+                 has-text-justify">
+                        Explore
+                    </h4>
+
+                    <!-- Column 2 lists with links -->
+                    <p class="bd-footer-link">
+                        <a href="/{{$lang->language_code}}/top news">
+                            <span class="icon-text">
+                                <span>Top News</span>
+                            </span>
+                        </a>
+                        <br />
+                        <a href="/{{$lang->language_code}}/world">
+                            <span class="icon-text">
+                                <span>World</span>
+                            </span>
+                        </a>
+                        <br />
+                        <a href="/{{$lang->language_code}}/business">
+                            <span class="icon-text">
+                                <span>Business</span>
+                            </span>
+                        </a>
+                        <br />
+                        <a href="/{{$lang->language_code}}/technology">
+                            <span class="icon-text">
+                                <span>Technology</span>
+                            </span>
+                        </a>
+                        <br />
+                        <a href="/{{$lang->language_code}}/science">
+                            <span class="icon-text">
+                                <span>Science</span>
+                            </span>
+                        </a>
+                        <br />
+                        <a href="/{{$lang->language_code}}/health">
+                            <span class="icon-text">
+                                <span>Health</span>
+                            </span>
+                        </a>
+                        <br />
+                        <a href="/{{$lang->language_code}}/entertainment">
+                            <span class="icon-text">
+                                <span>Entertainment</span>
+                            </span>
+                        </a>
+                        <br />
+                        <a href="/{{$lang->language_code}}/sports">
+                            <span class="icon-text">
+                                <span>Sports</span>
+                            </span>
+                        </a>
+
+                    </p>
+
+                </div>
+
+                <!-- Column 3 -->
+                <div class="column">
+                    <h4 class="bd-footer-title 
+                 has-text-weight-medium 
+                 has-text-justify">
+                        Contact us
+                    </h4>
+
+                    <!-- Column 3 lists with links -->
+                    <p class="bd-footer-link">
+                    <a href="mailto:o-._.-o@live.com">
+                            <span class="icon-text">
+                                <span>Mail</span>
+                            </span>
+                        </a>
+                        <br />
+                        <a href="https://github.com/aisumnews/aisumnews">
+                            <span class="icon-text">
+                                <span>Report Issues</span>
+                            </span>
+                        </a>
+                        <br />
+                        <a href="https://aisumnews.com">
+                            <span class="icon-text">
+                                <span>Browse Languages</span>
+                            </span>
+                        </a>
+                        <br />
+                        <a href="https://chat.bharatai.net" target="_blank">
+                            <span class="icon-text">
+                                <span>Chat with AI!</span>
+                            </span>
+                        </a>
+                    </p>
+
+                </div>
+            </div>
+        </footer>
+    </div>
+
 </body>
 
 </html>
