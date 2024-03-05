@@ -21,18 +21,53 @@ class NewsController extends Controller
     }
     public function langNews($language)
     {
+        $topic = 'All News';
+        $topic = strtoupper($topic);
+        $colors = [
+            'ALL NEWS' => 'is-success',
+            'TOP NEWS' => 'is-primary',
+            'WORLD' => 'is-link',
+            'BUSINESS' => 'is-info',
+            'TECHNOLOGY' => 'is-success',
+            'SCIENCE' => 'is-warning',
+            'HEALTH' => 'is-danger',
+            'ENTERTAINMENT' => 'is-primary',
+            'SPORTS' => 'is-link'
+        ];
+        
+        $color = $colors[$topic];
         $lang = Language::where('language_code', $language)->first();
-
         if ($language == 'eng_Latn') {
-            $news = News::where('language', 'eng_Latn')
+            $news = News::where('active', 1)
                 ->orderBy('id', 'desc')
+                ->orderBy('published_at', 'desc')
                 ->paginate(10);
+            return view(
+                'topic.lang_topic',
+                [
+                    'news' => $news,
+                    'lang' => $lang,
+                    'topic' => $topic,
+                    'color' => $color,
+                ]
+            );
+            //return $news;
         } else {
             $news = LangNews::where('language', $language)
+                ->where('active', 1)
                 ->orderBy('id', 'desc')
+                ->orderBy('published_at', 'desc')
                 ->paginate(10);
+            return view(
+                'topic.lang_topic',
+                [
+                    'news' => $news,
+                    'lang' => $lang,
+                    'topic' => $topic,
+                    'color' => $color,
+                ]
+            );
         }
-        return view('lang_news', ['news' => $news, 'lang' => $lang]);
     }
     public function countryLanguage($language, $topic)
     {
@@ -73,17 +108,18 @@ class NewsController extends Controller
     }
     public function langTopic($language, $topic)
     {
-        
+
         $topic = strtoupper($topic);
         $colors = [
-            'TOP NEWS'=>'is-primary', 
-            'WORLD'=>'is-link', 
-            'BUSINESS'=>'is-info', 
-            'TECHNOLOGY'=>'is-success', 
-            'SCIENCE'=>'is-warning', 
-            'HEALTH'=>'is-danger', 
-            'ENTERTAINMENT'=>'is-primary', 
-            'SPORTS'=>'is-link'];
+            'TOP NEWS' => 'is-primary',
+            'WORLD' => 'is-link',
+            'BUSINESS' => 'is-info',
+            'TECHNOLOGY' => 'is-success',
+            'SCIENCE' => 'is-warning',
+            'HEALTH' => 'is-danger',
+            'ENTERTAINMENT' => 'is-primary',
+            'SPORTS' => 'is-link'
+        ];
         $color = $colors[$topic];
         $lang = Language::where('language_code', $language)->first();
         if ($language == 'eng_Latn') {
@@ -109,15 +145,15 @@ class NewsController extends Controller
                 ->orderBy('id', 'desc')
                 ->orderBy('published_at', 'desc')
                 ->paginate(10);
-                return view(
-                    'topic.lang_topic',
-                    [
-                        'news' => $news,
-                        'lang' => $lang,
-                        'topic' => $topic,
-                        'color' => $color,
-                    ]
-                );
+            return view(
+                'topic.lang_topic',
+                [
+                    'news' => $news,
+                    'lang' => $lang,
+                    'topic' => $topic,
+                    'color' => $color,
+                ]
+            );
         }
     }
 }
