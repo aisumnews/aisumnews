@@ -236,7 +236,7 @@
 
                     <!-- Column 3 lists with links -->
                     <p class="bd-footer-link">
-                    <a href="mailto:o-._.-o@live.com">
+                        <a href="mailto:o-._.-o@live.com">
                             <span class="icon-text">
                                 <span>Mail</span>
                             </span>
@@ -265,7 +265,8 @@
             </div>
         </footer>
     </div>
-
+    <script src="/js/custom.js">
+    </script>
 </body>
 
 </html>
