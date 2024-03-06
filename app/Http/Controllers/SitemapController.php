@@ -47,6 +47,7 @@ class SitemapController extends Controller
             ->orderBy('published_at', 'desc')
             ->get();
         }
+        
         return response()->view('sitemap.sitemap_lang_topic', [
             'language' => $language,
             'topic' => $topic,
