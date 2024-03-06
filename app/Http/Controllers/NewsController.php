@@ -35,8 +35,10 @@ class NewsController extends Controller
                 ->orderBy('id', 'asc')
                 ->first();
             //return $news . $prev . $next;
-            if ($slug != Str::slug($news->title, '-')) {
-                return redirect()->route('topicStory', ['language' => $language, 'topic' => strtolower($topic), 'slug' => Str::slug($news->title, '-'), 'id' => $id]);
+            $slugc = preg_split ('/\_/', $language)[1]=='Latn'?Str::slug($news->title, '-'):preg_replace('/\s+/u', '-', trim($news->title));
+            return $slugc;
+            if ($slug != $slugc) {
+                return redirect()->route('topicStory', ['language' => $language, 'topic' => strtolower($topic), 'slug' => preg_split ('/\_/', $language)[1]=='Latn'?Str::slug($news->title, '-'):preg_replace('/\s+/u', '-', trim($news->title)), 'id' => $id]);
             }
 
             return view('topic.story', ['news' => $news, 'lang' => $lang, 'prev' => $prev, 'next' => $next, 'topic' => $topic]);
@@ -55,8 +57,10 @@ class NewsController extends Controller
                 ->where('language', $language)
                 ->orderBy('id', 'asc')
                 ->first();
-            if ($slug != Str::slug($news->title, '-')) {
-                return redirect()->route('topicStory', ['language' => $language, 'topic' => strtolower($topic), 'slug' => Str::slug($news->title, '-'), 'id' => $id]);
+                $slugc = preg_split ('/\_/', $language)[1]=='Latn'?Str::slug($news->title, '-'):preg_replace('/\s+/u', '-', trim($news->title));
+            
+            if ($slug != $slugc) {
+                return redirect()->route('topicStory', ['language' => $language, 'topic' => strtolower($topic), 'slug' => preg_split ('/\_/', $lang->language_code)[1]=='Latn'?Str::slug($news->title, '-'):preg_replace('/\s+/u', '-', trim($news->title)), 'id' => $id]);
             }
             return view('topic.story', ['news' => $news, 'lang' => $lang, 'prev' => $prev, 'next' => $next, 'topic' => $topic]);
         }

@@ -112,7 +112,7 @@
                 <div class="columns is-centered ">
                     <!-- Make left right button //-->
                     <div class="column is-1 is-hidden-mobile">
-                        <a id="prev" href="{{ empty($prev)?'#':route('topicStory', ['language' => $lang->language_code, 'topic' => strtolower($topic), 'slug' => Str::slug($prev->title, '-'), 'id' => $prev->id]) }}" class="button is-pulled-right {{empty($prev)?'is-disabled':'is-primary '}}">
+                        <a id="prev" href="{{ empty($prev)?'#':route('topicStory', ['language' => $lang->language_code, 'topic' => strtolower($topic), 'slug' => preg_split ('/\_/', $lang->language_code)[1]=='Latn'?Str::slug($prev->title, '-'):preg_replace('/\s+/u', '-', trim($prev->title)), 'id' => $prev->id]) }}" class="button is-pulled-right {{empty($prev)?'is-disabled':'is-primary '}}">
                             << </a>
                     </div>
                     <div class="column is-6">
@@ -143,7 +143,7 @@
                         </div>
                     </div>
                     <div class="column is-1 is-hidden-mobile">
-                        <a id="next" href="{{ empty($next)?'#':route('topicStory', ['language' => $lang->language_code, 'topic' => strtolower($topic), 'slug' => Str::slug($next->title, '-'), 'id' => $next->id]) }}" class="button {{empty($next)?'is-disabled':'is-primary '}}">>></a>
+                        <a id="next" href="{{ empty($next)?'#':route('topicStory', ['language' => $lang->language_code, 'topic' => strtolower($topic), 'slug' => preg_split ('/\_/', $lang->language_code)[1]=='Latn'?Str::slug($next->title, '-'):preg_replace('/\s+/u', '-', trim($next->title)), 'id' => $next->id]) }}" class="button {{empty($next)?'is-disabled':'is-primary '}}">>></a>
                     </div>
                 </div>
 

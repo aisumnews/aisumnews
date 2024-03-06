@@ -111,7 +111,7 @@
                         <div class="media">
 
                             <div class="media-content">
-                                <p class="title is-4"><a href="{{ route('topicStory', ['language' => $lang->language_code, 'topic' => strtolower($new->topic), 'slug' => Str::slug($new->title, '-'), 'id' => $new->id]) }}">{{ $new->title }}</a></p>
+                                <p class="title is-4"><a href="{{ route('topicStory', ['language' => $lang->language_code, 'topic' => strtolower($new->topic), 'slug' => preg_split ('/\_/', $lang->language_code)[1]=='Latn'?Str::slug($new->title, '-'):preg_replace('/\s+/u', '-', trim($new->title)), 'id' => $new->id]) }}">{{ $new->title }}</a></p>
                                 <p class="subtitle is-6"><a target="_blank" class="is-muted" href="{{ $new->url }}">{{ $new->publisher }}</a></p>
                             </div>
                         </div>
