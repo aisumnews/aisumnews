@@ -83,7 +83,7 @@
                             </a>
 
                             <hr class="navbar-divider">
-                            <a class="navbar-item">
+                            <a class="navbar-item" href="/about">
                                 About
                             </a>
                         </div>

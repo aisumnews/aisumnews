@@ -1,11 +1,30 @@
 <!DOCTYPE html>
-<html lang="{{ $lang->language_code=='eng_Latn'?'en':preg_split ('/\_/', $lang->language_code)[0] }}">
+<html lang="en">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ $topic }} latest news in {{ $lang->language_name }} - AISumNews.com</title>
+    <title>About Us - AISumNews.com</title>
+    <meta name="description" content="AISumNews or shortened for AI Summarized News is an open source application for displaying summarized news content from around the web. ">
+    <meta name="keywords" content="aisumnews, ai, summarization, nlp">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <style>
+        .section {
+            padding-top: 1rem;
+            padding-bottom: 2rem;
+        }
+    </style>
+
+    <!-- Twitter Card //-->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@aisumnews" />
+    <meta name="twitter:creator" content="@SanjibNarzary" />
+    <meta property="og:url" content="{{url()->current()}}" />
+    <meta property="og:title" content="About Us - AISumNews.com" />
+    <meta property="og:description" content="AISumNews or shortened for AI Summarized News is an open source application for displaying summarized news content from around the web. " />
+    <meta property="og:image" content="/images/default.jpeg" />
+    <!-- Open Graph //-->
+
 
 </head>
 
@@ -88,52 +107,42 @@
     </section>
 
     <div class="container">
-        <section class="hero {{ $color }}">
-            <div class="hero-body">
-                <p class="title">
-                    {{ $topic }}
-                </p>
-                <p class="subtitle">
-                    News in {{ $lang->language_name }}
-                </p>
-            </div>
-        </section>
         <section class="section">
             <div class="container">
-                @foreach($news as $new)
-                <div class="card">
-                    <div class="card-image">
-                        <figure class="image is-4by3">
-                            <img src="{{ empty($new->image)?'/images/default.jpeg':$new->image}}" alt="{{ $new->title }}">
-                        </figure>
-                    </div>
-                    <div class="card-content">
-                        <div class="media">
+                <div class="columns is-centered ">
+                    <!-- Make left right button //-->
 
-                            <div class="media-content">
-                                <p class="title is-4"><a href="{{ route('topicStory', ['language' => $lang->language_code, 'topic' => strtolower($topic), 'slug' => preg_split ('/\_/', $lang->language_code)[1]=='Latn'?Str::slug($new->title, '-'):preg_replace('/\s+/u', '-', trim($new->title)), 'id' => $new->id]) }}">{{ $new->title }}</a></p>
-                                <p class="subtitle is-6"><a target="_blank" class="is-muted" href="{{ $new->url }}">{{ $new->publisher }}</a></p>
+                    <div class="column is-6">
+                        <div class="card">
+                            <div class="card-image">
+                                <figure class="image is-4by3">
+                                    <img src="/images/default.jpeg" alt="AISumNews Logo">
+                                </figure>
+                            </div>
+                            <div class="card-content">
+                                <div class="media">
+
+                                    <div class="media-content">
+                                        <p class="title is-4">We deliver news in Multiple Languages</p>
+                                        <p class="subtitle is-6"><a target="_blank" class="is-muted" href="/">AISumNews.com</a></p>
+                                    </div>
+                                </div>
+
+                                <div class="content">
+                                    AISumNews or shortened for AI Summarized News is an open source application for displaying summarized news content from around the web.
+
+                                </div>
                             </div>
                         </div>
-
-                        <div class="content">
-                            {{ $new->content }}
-                            <br>
-                            <a href="#">#{{ $new->topic }}</a> <a href="#">#{{ $lang->language_name }}</a> <a href="#">#{{ $new->country }}</a>
-                            <br>
-                            <time datetime="2024-1-1">{{ \Carbon\Carbon::parse($new->published_at)->diffForHumans() }}</time>
-                            <span class="is-pulled-right">Read more at <a class="link is-right" href="{{ $new->url }}">{{ $new->publisher }}</a></span>
-                        </div>
                     </div>
+
+
                 </div>
-                @endforeach
+
+
             </div>
         </section>
-        <section class="section">
-            <div class="container">
-                {{ $news->withQueryString()->links('pagination.custom1') }}
-            </div>
-        </section>
+
     </div>
 
     <div class="container">
@@ -267,6 +276,8 @@
         </footer>
     </div>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="/js/story.js">
+    </script>
     <script src="/js/custom.js">
     </script>
 </body>

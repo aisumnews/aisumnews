@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\SitemapController;
+use App\Models\Language;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,6 +20,10 @@ Route::get('/', function () {
     $langs = \App\Models\Language::all();
 
     return view('welcome', ['langs' => $langs]);
+});
+Route::get('/about', function () {
+    $lang = Language::where('language_code', 'eng_Latn')->first();
+    return view('about',['lang'=>$lang]);
 });
 Route::get('/sitemap.xml',[SitemapController::class,'sitemap'])->name('sitemap');
 Route::get('/sitemap-{language}-{topic}.xml',[SitemapController::class,'sitemapLangTopic'])->name('sitemapLangTopic');
