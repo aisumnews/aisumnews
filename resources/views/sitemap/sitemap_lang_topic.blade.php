@@ -5,6 +5,7 @@
 <url>
     <loc>{{ route('topicStory', ['language' => $language, 'topic' => strtolower($topic), 'slug' => preg_split ('/\_/', $language)[1]=='Latn'?Str::slug($story->title, '-'):preg_replace('/\s+/u', '-', trim($story->title)), 'id' => $story->id]) }}</loc>
     <lastmod>{{ \Carbon\Carbon::parse($story->published_at)->tz('UTC')->toAtomString() }}</lastmod>
+    <priority>0.8</priority>
     <news:news>
     <news:publication>
         <news:name>AISumNews</news:name>
