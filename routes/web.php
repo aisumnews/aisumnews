@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\SitemapController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,6 +20,10 @@ Route::get('/', function () {
 
     return view('welcome', ['langs' => $langs]);
 });
+Route::get('/sitemap.xml',[SitemapController::class,'sitemap'])->name('sitemap');
+Route::get('/sitemap-{language}-{topic}.xml',[SitemapController::class,'sitemapLangTopic'])->name('sitemapLangTopic');
+Route::get('/sitemap-{language}.xml',[SitemapController::class,'sitemapLang'])->name('sitemapLang');
+
 Route::get('/{language}/story/{topic}/{slug}/{id}',[
     NewsController::class,'topicStory'
 ])->name('topicStory');
