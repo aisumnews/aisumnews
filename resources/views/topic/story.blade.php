@@ -146,7 +146,7 @@
                         <a id="next" href="{{ empty($next)?'#':route('topicStory', ['language' => $lang->language_code, 'topic' => strtolower($topic), 'slug' => preg_split ('/\_/', $lang->language_code)[1]=='Latn'?Str::slug($next->title, '-'):preg_replace('/\s+/u', '-', trim($next->title)), 'id' => $next->id]) }}" class="button {{empty($next)?'is-disabled':'is-primary '}}">>></a>
                     </div>
                     <div class="is-flex-mobile ">
-                        <div class="column is-1 is-hidden-tablet is-justify-content-space-between">
+                        <div class="is-hidden-tablet is-justify-content-space-between">
                             <a id="prev" href="{{ empty($prev)?'#':route('topicStory', ['language' => $lang->language_code, 'topic' => strtolower($topic), 'slug' => preg_split ('/\_/', $lang->language_code)[1]=='Latn'?Str::slug($prev->title, '-'):preg_replace('/\s+/u', '-', trim($prev->title)), 'id' => $prev->id]) }}" class="button {{empty($prev)?'is-disabled':'is-primary '}}">
                                 << </a> <a id="next" href="{{ empty($next)?'#':route('topicStory', ['language' => $lang->language_code, 'topic' => strtolower($topic), 'slug' => preg_split ('/\_/', $lang->language_code)[1]=='Latn'?Str::slug($next->title, '-'):preg_replace('/\s+/u', '-', trim($next->title)), 'id' => $next->id]) }}" class="button is-pulled-right {{empty($next)?'is-disabled':'is-primary '}}">>></a>
                         </div>
