@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\LangNews;
 use App\Models\Language;
 use App\Models\News;
@@ -21,47 +22,91 @@ class NewsController extends Controller
         $topic = strtoupper($topic);
         if ($language == 'eng_Latn') {
             $news = News::where('id', $id)
+                ->where('active', 1)
+                ->where('language', $language)
                 ->orderBy('published_at', 'desc')
                 ->first();
             //$prev = $news->links();
             //get the previous news
             //  
-            $prev = News::where('id', '<', $id)
-                ->where('topic', $topic)
-                ->orderBy('id', 'desc')
-                ->first();
-            $next = News::where('id', '>', $id)
-                ->where('topic', $topic)
-                ->orderBy('id', 'asc')
-                ->first();
+            if ($topic == 'ALL NEWS') {
+                $prev = News::where('id', '<', $id)
+                    ->where('active', 1)
+                    ->where('language', $language)
+                    ->orderBy('id', 'desc')
+                    ->first();
+                $next = News::where('id', '>', $id)
+                    ->where('active', 1)
+                    ->where('language', $language)
+                    ->orderBy('id', 'asc')
+                    ->first();
+            } else {
+
+                $prev = News::where('id', '<', $id)
+                    ->where('active', 1)
+                    ->where('language', $language)
+                    ->where('topic', $topic)
+                    ->orderBy('id', 'desc')
+                    ->first();
+                $next = News::where('id', '>', $id)
+                    ->where('active', 1)
+                    ->where('language', $language)
+                    ->where('topic', $topic)
+                    ->orderBy('id', 'asc')
+                    ->first();
+            }
+
             //return $news . $prev . $next;
-            $slugc = preg_split ('/\_/', $language)[1]=='Latn'?Str::slug($news->title, '-'):preg_replace('/\s+/u', '-', trim($news->title));
-            return $slugc;
+            $slugc = preg_split('/\_/', $language)[1] == 'Latn' ? Str::slug($news->title, '-') : preg_replace('/\s+/u', '-', trim($news->title));
+            //return $slugc;
             if ($slug != $slugc) {
-                return redirect()->route('topicStory', ['language' => $language, 'topic' => strtolower($topic), 'slug' => preg_split ('/\_/', $language)[1]=='Latn'?Str::slug($news->title, '-'):preg_replace('/\s+/u', '-', trim($news->title)), 'id' => $id]);
+                return redirect()->route('topicStory', ['language' => $language, 'topic' => strtolower($topic), 'slug' => preg_split('/\_/', $language)[1] == 'Latn' ? Str::slug($news->title, '-') : preg_replace('/\s+/u', '-', trim($news->title)), 'id' => $id]);
             }
 
             return view('topic.story', ['news' => $news, 'lang' => $lang, 'prev' => $prev, 'next' => $next, 'topic' => $topic]);
         } else {
-            $news = LangNews::where('language', $language)
-                ->where('id', $id)
+            $news = LangNews::where('id', $id)
+                ->where('active', 1)
+                ->where('language', $language)
                 ->orderBy('published_at', 'desc')
                 ->first();
-            $prev = LangNews::where('id', '<', $id)
-                ->where('topic', $topic)
-                ->where('language', $language)
-                ->orderBy('id', 'desc')
-                ->first();
-            $next = LangNews::where('id', '>', $id)
-                ->where('topic', $topic)
-                ->where('language', $language)
-                ->orderBy('id', 'asc')
-                ->first();
-                $slugc = preg_split ('/\_/', $language)[1]=='Latn'?Str::slug($news->title, '-'):preg_replace('/\s+/u', '-', trim($news->title));
-            
-            if ($slug != $slugc) {
-                return redirect()->route('topicStory', ['language' => $language, 'topic' => strtolower($topic), 'slug' => preg_split ('/\_/', $lang->language_code)[1]=='Latn'?Str::slug($news->title, '-'):preg_replace('/\s+/u', '-', trim($news->title)), 'id' => $id]);
+            //$prev = $news->links();
+            //get the previous news
+            //  
+            if ($topic == 'ALL NEWS') {
+                $prev = LangNews::where('id', '<', $id)
+                    ->where('active', 1)
+                    ->where('language', $language)
+                    ->orderBy('id', 'desc')
+                    ->first();
+                $next = LangNews::where('id', '>', $id)
+                    ->where('active', 1)
+                    ->where('language', $language)
+                    ->orderBy('id', 'asc')
+                    ->first();
+            } else {
+
+                $prev = LangNews::where('id', '<', $id)
+                    ->where('active', 1)
+                    ->where('language', $language)
+                    ->where('topic', $topic)
+                    ->orderBy('id', 'desc')
+                    ->first();
+                $next = LangNews::where('id', '>', $id)
+                    ->where('active', 1)
+                    ->where('language', $language)
+                    ->where('topic', $topic)
+                    ->orderBy('id', 'asc')
+                    ->first();
             }
+
+            //return $news . $prev . $next;
+            $slugc = preg_split('/\_/', $language)[1] == 'Latn' ? Str::slug($news->title, '-') : preg_replace('/\s+/u', '-', trim($news->title));
+            //return $slugc;
+            if ($slug != $slugc) {
+                return redirect()->route('topicStory', ['language' => $language, 'topic' => strtolower($topic), 'slug' => preg_split('/\_/', $language)[1] == 'Latn' ? Str::slug($news->title, '-') : preg_replace('/\s+/u', '-', trim($news->title)), 'id' => $id]);
+            }
+
             return view('topic.story', ['news' => $news, 'lang' => $lang, 'prev' => $prev, 'next' => $next, 'topic' => $topic]);
         }
     }
