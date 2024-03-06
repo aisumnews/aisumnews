@@ -16,6 +16,7 @@ class NewsController extends Controller
     {
         return News::all();
     }
+
     public function topicStory($language, $topic, $slug, $id)
     {
         $lang = Language::where('language_code', $language)->first();
@@ -60,7 +61,7 @@ class NewsController extends Controller
             $slugc = preg_split('/\_/', $language)[1] == 'Latn' ? Str::slug($news->title, '-') : preg_replace('/\s+/u', '-', trim($news->title));
             //return $slugc;
             if ($slug != $slugc) {
-                return redirect()->route('topicStory', ['language' => $language, 'topic' => strtolower($topic), 'slug' => preg_split('/\_/', $language)[1] == 'Latn' ? Str::slug($news->title, '-') : preg_replace('/\s+/u', '-', trim($news->title)), 'id' => $id]);
+                return redirect()->route('topicStory', ['language' => $language, 'topic' => strtolower($topic), 'slug' => $slugc, 'id' => $id]);
             }
 
             return view('topic.story', ['news' => $news, 'lang' => $lang, 'prev' => $prev, 'next' => $next, 'topic' => $topic]);
@@ -99,16 +100,15 @@ class NewsController extends Controller
                     ->orderBy('id', 'asc')
                     ->first();
             }
-
-            //return $news . $prev . $next;
-            $slugc = preg_split('/\_/', $language)[1] == 'Latn' ? Str::slug($news->title, '-') : preg_replace('/\s+/u', '-', trim($news->title));
-            //return $slugc;
-            if ($slug != $slugc) {
-                return redirect()->route('topicStory', ['language' => $language, 'topic' => strtolower($topic), 'slug' => preg_split('/\_/', $language)[1] == 'Latn' ? Str::slug($news->title, '-') : preg_replace('/\s+/u', '-', trim($news->title)), 'id' => $id]);
-            }
-
-            return view('topic.story', ['news' => $news, 'lang' => $lang, 'prev' => $prev, 'next' => $next, 'topic' => $topic]);
         }
+        //return $news . $prev . $next;
+        $slugc = preg_split('/\_/', $language)[1] == 'Latn' ? Str::slug($news->title, '-') : preg_replace('/\s+/u', '-', trim($news->title));
+        //return $slugc;
+        if ($slug != $slugc) {
+            return redirect()->route('topicStory', ['language' => $language, 'topic' => strtolower($topic), 'slug' => $slugc, 'id' => $id]);
+        }
+
+        return view('topic.story', ['news' => $news, 'lang' => $lang, 'prev' => $prev, 'next' => $next, 'topic' => $topic]);
     }
     public function store(Request $request)
     {
@@ -183,22 +183,43 @@ class NewsController extends Controller
     }
     public function langTopicId($language, $topic, $id)
     {
+        $topic = strtoupper($topic);
         $lang = Language::where('language_code', $language)->first();
         if ($language == 'eng_Latn') {
-            $news = News::where('language', 'eng_Latn')
-                ->where('topic', $topic)
-                ->where('id', $id)
-                ->orderBy('published_at', 'desc')
-                ->paginate(1)
-                ->get();
+            if ($topic == 'ALL NEWS') {
+                $news = News::where('language', 'eng_Latn')
+                    ->where('id', $id)
+                    ->where('active', 1)
+                    ->orderBy('published_at', 'desc')
+                    ->paginate(1)
+                    ->get();
+            } else {
+                $news = News::where('language', 'eng_Latn')
+                    ->where('id', $id)
+                    ->where('active', 1)
+                    ->where('topic', $topic)
+                    ->orderBy('published_at', 'desc')
+                    ->paginate(1)
+                    ->get();
+            }
             return view('lang_news', ['news' => $news, 'lang' => $lang]);
         } else {
-            $news = LangNews::where('language', $language)
-                ->where('topic', $topic)
-                ->where('id', $id)
-                ->orderBy('published_at', 'desc')
-                ->paginate(1)
-                ->get();
+            if ($topic == 'ALL NEWS') {
+                $news = LangNews::where('language', $language)
+                    ->where('id', $id)
+                    ->where('active', 1)
+                    ->orderBy('published_at', 'desc')
+                    ->paginate(1)
+                    ->get();
+            } else {
+                $news = LangNews::where('language', $language)
+                    ->where('id', $id)
+                    ->where('active', 1)
+                    ->where('topic', $topic)
+                    ->orderBy('published_at', 'desc')
+                    ->paginate(1)
+                    ->get();
+            }
             return view('lang_news', ['news' => $news, 'lang' => $lang]);
         }
     }
@@ -207,6 +228,7 @@ class NewsController extends Controller
 
         $topic = strtoupper($topic);
         $colors = [
+            'ALL NEWS' => 'is-success',
             'TOP NEWS' => 'is-primary',
             'WORLD' => 'is-link',
             'BUSINESS' => 'is-info',
@@ -219,11 +241,20 @@ class NewsController extends Controller
         $color = $colors[$topic];
         $lang = Language::where('language_code', $language)->first();
         if ($language == 'eng_Latn') {
-            $news = News::where('topic', $topic)
-                ->where('active', 1)
-                ->orderBy('id', 'desc')
-                ->orderBy('published_at', 'desc')
-                ->paginate(10);
+            if ($topic == 'ALL NEWS') {
+
+                $news = News::where('active', 1)
+                    ->orderBy('id', 'desc')
+                    ->orderBy('published_at', 'desc')
+                    ->paginate(10);
+            } else {
+
+                $news = News::where('topic', $topic)
+                    ->where('active', 1)
+                    ->orderBy('id', 'desc')
+                    ->orderBy('published_at', 'desc')
+                    ->paginate(10);
+            }
             return view(
                 'topic.lang_topic',
                 [
@@ -235,12 +266,24 @@ class NewsController extends Controller
             );
             //return $news;
         } else {
-            $news = LangNews::where('language', $language)
-                ->where('topic', $topic)
-                ->where('active', 1)
-                ->orderBy('id', 'desc')
-                ->orderBy('published_at', 'desc')
-                ->paginate(10);
+            if ($topic == 'ALL NEWS') {
+
+                $news = LangNews::where('active', 1)
+                    ->where('language', $language)
+
+                    ->orderBy('id', 'desc')
+                    ->orderBy('published_at', 'desc')
+                    ->paginate(10);
+            } else {
+
+                $news = LangNews::where('topic', $topic)
+                    ->where('language', $language)
+
+                    ->where('active', 1)
+                    ->orderBy('id', 'desc')
+                    ->orderBy('published_at', 'desc')
+                    ->paginate(10);
+            }
             return view(
                 'topic.lang_topic',
                 [
