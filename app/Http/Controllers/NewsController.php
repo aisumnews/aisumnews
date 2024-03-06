@@ -12,10 +12,7 @@ use Illuminate\Support\Str;
 class NewsController extends Controller
 {
     //
-    public function index()
-    {
-        return News::all();
-    }
+   
 
     public function topicStory($language, $topic, $slug, $id)
     {
