@@ -20,7 +20,7 @@
                     <img class="card-img-top img-fluid" src="{{ empty($n->image)?'/images/default.jpeg': $n->image}}" alt="{{ $n->title }}" >
                     <div class="card-body">
                         <h5 class="card-title">{{ str_replace('।', '', $n->title) }}</h5>
-                        <p class="card-text">{{ $n->content }}</p>
+                        <p class="card-text">{{ strip_tags($n->content) }}</p>
                         <p class="card-text"><small class="text-muted">{{ $n->published_at }} Original News on <a target="_blank" href="{{ $n->url }}" class="text-muted" style="text-decoration:none;">{{ $n->publisher}}</a></small></p>
                     </div>
                 </div>

@@ -132,7 +132,7 @@
                                 </div>
 
                                 <div class="content">
-                                    {{ $news->content }}
+                                    <div id="story">{{ $news->content }}</div>
                                     <br>
                                     <a href="#">#{{ $news->topic }}</a> <a href="#">#{{ $lang->language_name }}</a> <a href="#">#{{ $news->country }}</a>
                                     <br>
@@ -293,6 +293,8 @@
     <script src="/js/story.js">
     </script>
     <script src="/js/custom.js">
+    </script>
+    <script src="/js/htmldecode.js">
     </script>
 </body>
 
