@@ -121,7 +121,7 @@
                             <br>
                             <a href="#">#{{ $new->topic }}</a> <a href="#">#{{ $lang->language_name }}</a> <a href="#">#{{ $new->country }}</a>
                             <br>
-                            <time datetime="2024-1-1">{{ \Carbon\Carbon::parse($new->published_at)->diffForHumans() }}</time>
+                            <time datetime="{{ \Carbon\Carbon::parse($news->published_at)->format('Y-m-d') }}">{{ \Carbon\Carbon::parse($new->published_at)->diffForHumans() }}</time>
                             <span class="is-pulled-right">Read more at <a class="link is-right" href="{{ $new->url }}">{{ $new->publisher }}</a></span>
                         </div>
                     </div>
