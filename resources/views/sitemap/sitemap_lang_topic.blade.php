@@ -11,7 +11,9 @@
     <news:news>
     <news:publication>
         <news:name>AISumNews</news:name>
+        @if ($language == 'eng_Latn')
         <news:language>{{preg_split ('/\_/', $language)[0]}}</news:language>
+        @endif
         </news:publication>
         <news:publication_date>{{ \Carbon\Carbon::parse($story->published_at)->format('Y-m-d')}}</news:publication_date>
         <news:title>{{ $story->title }}</news:title>
