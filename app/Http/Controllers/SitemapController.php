@@ -66,6 +66,6 @@ class SitemapController extends Controller
             'language' => $language,
             'topic' => $topic,
             'news' => $news
-        ]);
+        ])->header('Content-Type', 'application/xml');
     }
 }

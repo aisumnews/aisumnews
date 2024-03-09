@@ -26,7 +26,7 @@ Route::get('/about', function () {
     return view('about',['lang'=>$lang]);
 });
 Route::get('/sitemap.xml',[SitemapController::class,'sitemap'])->name('sitemap');
-Route::get('/sitemap-{begin}-{end}.xml',[SitemapController::class,'sitemap_other'])->name('sitemap_other');
+Route::get('/sitemap-{begin}-{end}.xml',[SitemapController::class,'sitemap_other'])->name('sitemap_other')->where('begin', '[0-9]+')->where('end', '[0-9]+');
 Route::get('/sitemap-{language}-{topic}.xml',[SitemapController::class,'sitemapLangTopic'])->name('sitemapLangTopic');
 Route::get('/sitemap-{language}.xml',[SitemapController::class,'sitemapLang'])->name('sitemapLang');
 
