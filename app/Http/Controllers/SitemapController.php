@@ -35,7 +35,7 @@ class SitemapController extends Controller
         $topics = ['top%20news', 'world', 'business', 'technology', 'science', 'health', 'entertainment', 'sports'];
         $languages = Language::where('id','>', $begin)
         ->where('id','<=', $end)->get();
-        return response()->view('sitemap.sitemap_lang', [
+        return view('sitemap.sitemap_lang', [
             'topics' => $topics,
             'languages' => $languages,
         ]);

@@ -3,13 +3,13 @@
 @foreach ($languages as $language)
 @foreach ($topics as $topic)
 @if ($topic == 'top news')
-<sitemap>
-   <loc>{{ url('/') }}/sitemap-{{ $language->language_code }}-top%20news.xml</loc>
-</sitemap>
+  <sitemap>
+    <loc>{{ url('/') }}/sitemap-{{ $language->language_code }}-top%20news.xml</loc>
+  </sitemap>
 @else
-<sitemap>
-   <loc>{{ url('/') }}/sitemap-{{ $language->language_code }}-{{ $topic }}.xml</loc>
-</sitemap>    
+  <sitemap>
+    <loc>{{ url('/') }}/sitemap-{{ $language->language_code }}-{{ $topic }}.xml</loc>
+  </sitemap>    
 @endif
 @endforeach
 @endforeach
