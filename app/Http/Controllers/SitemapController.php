@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Lang;
 class SitemapController extends Controller
 {
     //
+    /*
     public function sitemap()
     {
         $languages = Language::all();
@@ -18,16 +19,29 @@ class SitemapController extends Controller
             'langs' => $languages
         ]);
     }
-    public function sitemapLang($language)
+    */
+    public function sitemap()
     {
         $topics = ['top%20news', 'world', 'business', 'technology', 'science', 'health', 'entertainment', 'sports'];
-        $languages = $language;
+        $languages = Language::where('id','<=', 50)->get();
         return response()->view('sitemap.sitemap_lang', [
             'topics' => $topics,
-            'language' => $language,
+            'languages' => $languages,
         ]);
         
     }
+    public function sitemap_other($begin, $end)
+    {
+        $topics = ['top%20news', 'world', 'business', 'technology', 'science', 'health', 'entertainment', 'sports'];
+        $languages = Language::where('id','>', $begin)
+        ->where('id','<=', $end)->get();
+        return response()->view('sitemap.sitemap_lang', [
+            'topics' => $topics,
+            'languages' => $languages,
+        ]);
+        
+    }
+    
     public function sitemapLangTopic($language, $topic)
     {
         $languages = $language;
