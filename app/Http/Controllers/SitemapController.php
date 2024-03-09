@@ -20,7 +20,7 @@ class SitemapController extends Controller
     }
     public function sitemapLang($language)
     {
-        $topics = ['top news', 'world', 'business', 'technology', 'science', 'health', 'entertainment', 'sports'];
+        $topics = ['top%20news', 'world', 'business', 'technology', 'science', 'health', 'entertainment', 'sports'];
         $languages = $language;
         return response()->view('sitemap.sitemap_lang', [
             'topics' => $topics,
