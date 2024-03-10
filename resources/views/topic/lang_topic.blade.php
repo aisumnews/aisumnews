@@ -101,6 +101,18 @@
         <section class="section">
             <div class="container">
                 @foreach($news as $new)
+                @if($loop->iteration == 1 || $loop->iteration %3 == 0) 
+                <div class="card">
+                    <div class="card-content">
+                        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-0175657744917151" crossorigin="anonymous"></script>
+                        <!-- Lang News Ads -->
+                        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-0175657744917151" data-ad-slot="2467060209" data-ad-format="auto" data-full-width-responsive="true"></ins>
+                        <script>
+                            (adsbygoogle = window.adsbygoogle || []).push({});
+                        </script>
+                    </div>
+                </div>
+                @endif
                 <div class="card">
                     <div class="card-image">
                         <figure class="image is-4by3">
