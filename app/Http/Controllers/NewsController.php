@@ -13,7 +13,7 @@ use Illuminate\Support\Str;
 class NewsController extends Controller
 {
     //
-   
+
 
     public function topicStory($language, $topic, $slug, $id)
     {
@@ -69,6 +69,7 @@ class NewsController extends Controller
             $news = LangNews::where('id', $id)
                 ->where('active', 1)
                 ->where('language', $language)
+                ->where('title', '>', '')
                 ->orderBy('published_at', 'desc')
                 ->first();
             //$prev = $news->links();
@@ -78,11 +79,13 @@ class NewsController extends Controller
                 $prev = LangNews::where('id', '<', $id)
                     ->where('active', 1)
                     ->where('language', $language)
+                    ->where('title', '>', '')
                     ->orderBy('id', 'desc')
                     ->first();
                 $next = LangNews::where('id', '>', $id)
                     ->where('active', 1)
                     ->where('language', $language)
+                    ->where('title', '>', '')
                     ->orderBy('id', 'asc')
                     ->first();
             } else {
@@ -91,11 +94,13 @@ class NewsController extends Controller
                     ->where('active', 1)
                     ->where('language', $language)
                     ->where('topic', $topic)
+                    ->where('title', '>', '')
                     ->orderBy('id', 'desc')
                     ->first();
                 $next = LangNews::where('id', '>', $id)
                     ->where('active', 1)
                     ->where('language', $language)
+                    ->where('title', '>', '')
                     ->where('topic', $topic)
                     ->orderBy('id', 'asc')
                     ->first();
@@ -152,6 +157,7 @@ class NewsController extends Controller
             $news = LangNews::where('language', $language)
                 ->where('active', 1)
                 ->orderBy('id', 'desc')
+                ->where('title', '>', '')
                 ->orderBy('published_at', 'desc')
                 ->paginate(10);
             return view(
@@ -170,12 +176,14 @@ class NewsController extends Controller
         $lang = Language::where('language_code', $language)->first();
         if ($language == 'eng_Latn') {
             return News::where('topic', $topic)
+                ->where('title', '>', '')
                 ->orderBy('published_at', 'desc')
                 ->take(1)
                 ->get();
         } else {
             return LangNews::where('language', $language)
                 ->where('topic', $topic)
+                ->where('title','>','')
                 ->orderBy('published_at', 'desc')
                 ->take(1)
                 ->paginate(1);
@@ -207,6 +215,7 @@ class NewsController extends Controller
             if ($topic == 'ALL NEWS') {
                 $news = LangNews::where('language', $language)
                     ->where('id', $id)
+                    ->where('title','>','')
                     ->where('active', 1)
                     ->orderBy('published_at', 'desc')
                     ->paginate(1)
@@ -214,6 +223,7 @@ class NewsController extends Controller
             } else {
                 $news = LangNews::where('language', $language)
                     ->where('id', $id)
+                    ->where('title','>','')
                     ->where('active', 1)
                     ->where('topic', $topic)
                     ->orderBy('published_at', 'desc')
@@ -270,7 +280,7 @@ class NewsController extends Controller
 
                 $news = LangNews::where('active', 1)
                     ->where('language', $language)
-
+                    ->where('title','>','')
                     ->orderBy('id', 'desc')
                     ->orderBy('published_at', 'desc')
                     ->paginate(10);
@@ -278,7 +288,7 @@ class NewsController extends Controller
 
                 $news = LangNews::where('topic', $topic)
                     ->where('language', $language)
-
+                    ->where('title','>','')
                     ->where('active', 1)
                     ->orderBy('id', 'desc')
                     ->orderBy('published_at', 'desc')
