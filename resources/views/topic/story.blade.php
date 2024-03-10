@@ -163,7 +163,7 @@
                     </div>
                 </div>
                 <div class="column is-centered">
-                    <div class="column is-6is-flex sharethis-inline-share-buttons"></div>
+                    <div class="column is-6is-flex sharethis-inline-share-buttons" data-title="{{$news->title}}" data-image="{{ empty($news->image)?'/images/default.jpeg':$news->image}}" data-description="{{ $news->content }}"></div>
                 </div>
 
             </div>
