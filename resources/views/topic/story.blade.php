@@ -165,7 +165,20 @@
                 <div class="column is-centered">
                     <div class="column is-6is-flex sharethis-inline-share-buttons" data-title="{{$news->title}}" data-image="{{ empty($news->image)?'/images/default.jpeg':$news->image}}" data-description="{{ $news->content }}"></div>
                 </div>
-
+                <div class="column">
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-0175657744917151"
+                    crossorigin="anonymous"></script>
+                <!-- Story Ads -->
+                <ins class="adsbygoogle"
+                    style="display:block"
+                    data-ad-client="ca-pub-0175657744917151"
+                    data-ad-slot="8294101954"
+                    data-ad-format="auto"
+                    data-full-width-responsive="true"></ins>
+                <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+                </div>
             </div>
         </section>
 
