@@ -243,6 +243,12 @@
                             </span>
                         </a>
                         <br />
+                        <a href="https://www.freeprivacypolicy.com/live/1fb0f0e2-4671-41ca-ab25-fa004ab9dcfb">
+                            <span class="icon-text">
+                                <span>Privacy</span>
+                            </span>
+                        </a>
+                        <br />
                         <a href="https://github.com/aisumnews/aisumnews">
                             <span class="icon-text">
                                 <span>Report Issues</span>
