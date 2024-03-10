@@ -142,21 +142,28 @@
                             </div>
                         </div>
                     </div>
+                    <div class="is-flex">
+                    </div>
+
                     <div class="column is-1 is-hidden-mobile">
                         <a id="next" href="{{ empty($next)?'#':route('topicStory', ['language' => $lang->language_code, 'topic' => strtolower($topic), 'slug' => preg_split ('/\_/', $lang->language_code)[1]=='Latn'?Str::slug($next->title, '-'):preg_replace('/\s+/u', '-', trim($next->title)), 'id' => $next->id]) }}" class="button {{empty($next)?'is-disabled':'is-primary '}}">>></a>
                     </div>
                     <div class="is-flex-mobile is-hidden-tablet is-justify-content-space-between">
-                        <br><a href="whatsapp://send?text={{ $news->title}} {{urlencode(url()->current())}}" data-action="share/whatsapp/share">Share via Whatsapp</a>
-<br>
+                        <!--    
+                    <br><a href="whatsapp://send?text={{ $news->title}} {{urlencode(url()->current())}}" data-action="share/whatsapp/share">Share via Whatsapp</a>
+                        <br>
+                    -->
                     </div>
                     <div class="is-flex-mobile is-hidden-tablet is-justify-content-space-between">
-                        
+
                         <a id="prev" href="{{ empty($prev)?'#':route('topicStory', ['language' => $lang->language_code, 'topic' => strtolower($topic), 'slug' => preg_split ('/\_/', $lang->language_code)[1]=='Latn'?Str::slug($prev->title, '-'):preg_replace('/\s+/u', '-', trim($prev->title)), 'id' => $prev->id]) }}" class="button {{empty($prev)?'is-disabled':'is-primary '}}">
                             << </a> <a id="next" href="{{ empty($next)?'#':route('topicStory', ['language' => $lang->language_code, 'topic' => strtolower($topic), 'slug' => preg_split ('/\_/', $lang->language_code)[1]=='Latn'?Str::slug($next->title, '-'):preg_replace('/\s+/u', '-', trim($next->title)), 'id' => $next->id]) }}" class="button is-pulled-right {{empty($next)?'is-disabled':'is-primary '}}">>></a>
 
                     </div>
                 </div>
-
+                <div class="column is-centered">
+                    <div class="column is-6is-flex sharethis-inline-share-buttons"></div>
+                </div>
 
             </div>
         </section>
@@ -264,7 +271,7 @@
 
                     <!-- Column 3 lists with links -->
                     <p class="bd-footer-link">
-                    <a href="/about">
+                        <a href="/about">
                             <span class="icon-text">
                                 <span>About Us</span>
                             </span>
@@ -306,6 +313,8 @@
     </script>
     <script src="/js/htmldecode.js">
     </script>
+    <script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=65ed44fcef34cf0019162628&product=inline-share-buttons' async='async'></script>
+
 </body>
 
 </html>
