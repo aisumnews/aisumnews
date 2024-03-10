@@ -116,7 +116,7 @@
                         <div class="card">
                             <div class="card-image">
                                 <figure class="image is-3by1">
-                                    <img src="/images/home-logo-transparent.png" alt="AISumNews Logo" >
+                                    <img src="/images/home-logo-transparent.png" alt="AISumNews Logo">
                                 </figure>
                             </div>
                             <div class="card-content">
@@ -131,12 +131,12 @@
                                 <div class="content">
                                     AISumNews or shortened for AI Summarized News is an open source application for displaying summarized news content from around the web.
                                     <br>
-                                    The initial version of the application was developed by <a href="https://sanjibnarzary.github.io">Sanjib Narzary</a>.  The server side application fetches news from around the world and with the help of Deep Neural Network the contents are summarized and titles are generated. The generated title and summarized contents are then translated to 208 languages using Neural Machine Translation (NMT) System.
+                                    The initial version of the application was developed by <a href="https://sanjibnarzary.github.io">Sanjib Narzary</a>. The server side application fetches news from around the world and with the help of Deep Neural Network the contents are summarized and titles are generated. The generated title and summarized contents are then translated to 208 languages using Neural Machine Translation (NMT) System.
                                     <br>
                                     <br>
                                     <p>News Story can be navigated by Left Arrow (<--) and Right Arrow (-->)</p>
                                 </div>
-                                
+
                             </div>
                         </div>
                     </div>
@@ -251,6 +251,18 @@
 
                     <!-- Column 3 lists with links -->
                     <p class="bd-footer-link">
+                        <a href="/about">
+                            <span class="icon-text">
+                                <span>About</span>
+                            </span>
+                        </a>
+                        <br />
+                        <a href="https://www.freeprivacypolicy.com/live/1fb0f0e2-4671-41ca-ab25-fa004ab9dcfb">
+                            <span class="icon-text">
+                                <span>Privacy</span>
+                            </span>
+                        </a>
+                        <br />
                         <a href="mailto:o-._.-o@live.com">
                             <span class="icon-text">
                                 <span>Mail</span>
