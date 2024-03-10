@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\LangNews;
 use App\Models\Language;
 use App\Models\News;
+use App\Models\NLLBCode;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -17,6 +18,8 @@ class NewsController extends Controller
     public function topicStory($language, $topic, $slug, $id)
     {
         $lang = Language::where('language_code', $language)->first();
+        $lang_2_letter = NLLBCode::where('nllb_code', $language)->first();
+        $lang_2_letter = $lang_2_letter->language_code;
         $topic = strtoupper($topic);
         if ($language == 'eng_Latn') {
             $news = News::where('id', $id)
@@ -61,7 +64,7 @@ class NewsController extends Controller
                 return redirect()->route('topicStory', ['language' => $language, 'topic' => strtolower($topic), 'slug' => $slugc, 'id' => $id]);
             }
 
-            return view('topic.story', ['news' => $news, 'lang' => $lang, 'prev' => $prev, 'next' => $next, 'topic' => $topic]);
+            return view('topic.story', ['news' => $news, 'lang' => $lang, 'prev' => $prev, 'next' => $next, 'topic' => $topic, 'lang_2_letter' => $lang_2_letter]);
         } else {
             $news = LangNews::where('id', $id)
                 ->where('active', 1)
@@ -105,7 +108,7 @@ class NewsController extends Controller
             return redirect()->route('topicStory', ['language' => $language, 'topic' => strtolower($topic), 'slug' => $slugc, 'id' => $id]);
         }
 
-        return view('topic.story', ['news' => $news, 'lang' => $lang, 'prev' => $prev, 'next' => $next, 'topic' => $topic]);
+        return view('topic.story', ['news' => $news, 'lang' => $lang, 'prev' => $prev, 'next' => $next, 'topic' => $topic, 'lang_2_letter' => $lang_2_letter]);
     }
     public function store(Request $request)
     {
