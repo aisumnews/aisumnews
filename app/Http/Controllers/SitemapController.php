@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Language;
 use App\Models\News;
 use App\Models\LangNews;
+use App\Models\NLLBCode;
 use Illuminate\Support\Facades\Lang;
 
 class SitemapController extends Controller
@@ -20,10 +21,22 @@ class SitemapController extends Controller
         ]);
     }
     */
+    public function sitemapLang($language){
+        $topics = ['top%20news', 'world', 'business', 'technology', 'science', 'health', 'entertainment', 'sports'];
+        $language = Language::where('language_code', $language)->first();
+        $lang_2_letter = NLLBCode::where('nllb_code', $language->language_code)->first();
+        $lang_2_letter = $lang_2_letter->language_code;
+        return response()->view('sitemap.sitemap_lang_code', [
+            'topics' => $topics,
+            'language' => $language,
+            'lang_2_letter' => $lang_2_letter
+        ])->header('Content-Type', 'application/xml');
+    }
     public function sitemap()
     {
         $topics = ['top%20news', 'world', 'business', 'technology', 'science', 'health', 'entertainment', 'sports'];
         $languages = Language::where('id','<=', 50)->get();
+        
         return response()->view('sitemap.sitemap_lang', [
             'topics' => $topics,
             'languages' => $languages,
@@ -44,8 +57,10 @@ class SitemapController extends Controller
     
     public function sitemapLangTopic($language, $topic)
     {
-        $languages = $language;
+        //$languages = $language;
         $topics = $topic;
+        $lang_2_letter = NLLBCode::where('nllb_code', $language)->first();
+        $lang_2_letter = $lang_2_letter->language_code;
         if ($language == 'eng_Latn') {
             $news = News::where('topic', $topic)
             ->where('language', 'eng_Latn')
@@ -65,7 +80,8 @@ class SitemapController extends Controller
         return response()->view('sitemap.sitemap_lang_topic', [
             'language' => $language,
             'topic' => $topic,
-            'news' => $news
+            'news' => $news,
+            'lang_2_letter' => $lang_2_letter
         ])->header('Content-Type', 'application/xml');
     }
 }

@@ -414,3 +414,4 @@ https://aisumnews.com/sitemap-zho_Hant.xml
 https://aisumnews.com/sitemap-zsm_Latn.xml 
 
 https://aisumnews.com/sitemap-zul_Latn.xml
+{{substr(preg_split ('/\_/', $language)[0],0,-1)}}
