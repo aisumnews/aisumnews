@@ -153,6 +153,7 @@
                     <br><a href="whatsapp://send?text={{ $news->title}} {{urlencode(url()->current())}}" data-action="share/whatsapp/share">Share via Whatsapp</a>
                         <br>
                     -->
+                    <br>
                     </div>
                     <div class="is-flex-mobile is-hidden-tablet is-justify-content-space-between">
 
