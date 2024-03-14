@@ -267,7 +267,7 @@
                             </span>
                         </a>
                         <br />
-                        <a href="https://aisumnews.com">
+                        <a href="https://aisumnews.com/languages">
                             <span class="icon-text">
                                 <span>Browse Languages</span>
                             </span>
