@@ -3,6 +3,7 @@
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\SitemapController;
 use App\Models\Language;
+use App\Models\News;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,6 +18,22 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+    $lang = Language::where('language_code', 'eng_Latn')->first();
+    $news = News::where('active', 1)
+                ->orderBy('id', 'desc')
+                ->orderBy('published_at', 'desc')
+                ->paginate(10);
+            return view(
+                'topic.lang_topic',
+                [
+                    'news' => $news,
+                    'lang' => $lang,
+                    'topic' => 'ALL NEWS',
+                    'color' => 'is-primary',
+                ]
+            );
+});
+Route::get('/languages', function () {
     $langs = \App\Models\Language::all();
 
     return view('welcome', ['langs' => $langs]);
