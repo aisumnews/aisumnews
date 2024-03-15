@@ -56,7 +56,7 @@ class NewsController extends Controller
                     ->orderBy('id', 'asc')
                     ->first();
             }
-
+            
             //return $news . $prev . $next;
             $slugc = preg_split('/\_/', $language)[1] == 'Latn' ? Str::slug($news->title, '-') : preg_replace('/\s+/u', '-', trim($news->title));
             //return $slugc;
