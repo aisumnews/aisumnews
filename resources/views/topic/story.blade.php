@@ -7,6 +7,7 @@
     <title>{{ $news->title}} - AISumNews.com</title>
     <meta name="description" content="{{ $news->content}}">
     <meta name="keywords" content="{{$topic}}, aisumnews, ai, {{$lang->language_name}}">
+    <meta http-equiv="content-language" content="{{ $lang_2_letter }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
     <style>
         .section {

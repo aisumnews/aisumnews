@@ -5,8 +5,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ $topic }} latest news in {{ $lang->language_name }} - AISumNews.com</title>
+    <meta http-equiv="content-language" content="{{ $lang->language_code=='eng_Latn'?'en':preg_split ('/\_/', $lang->language_code)[0] }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-
+    <meta name="description" content="{{ $topic }} latest news in {{ $lang->language_name }}. AISumNews provides summarised news in 208 languages around the world - AISumNews.com">
 </head>
 
 <body>
