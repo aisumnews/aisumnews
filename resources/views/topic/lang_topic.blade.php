@@ -92,7 +92,7 @@
         <section class="hero {{ $color }}">
             <div class="hero-body">
                 <p class="title">
-                    <h1>{{ $topic }}</h1>
+                    <h1 class="title">{{ $topic }}</h1>
                 </p>
                 <p class="subtitle">
                     News in {{ $lang->language_name }}
