@@ -154,7 +154,7 @@
         <footer class="footer">
             <!-- Copyright symbol of company -->
             <div class="content has-text-centered">
-                <p><img src="/images/home-logo-transparent.png"></p>
+                <p><img src="/images/home-logo-transparent.png" alt="AISum News Home Logo"></p>
 
             </div>
 
