@@ -16,7 +16,6 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
 Route::get('/', function () {
     $lang = Language::where('language_code', 'eng_Latn')->first();
     $news = News::where('active', 1)
@@ -53,3 +52,6 @@ Route::get('/{language}/story/{topic}/{slug}/{id}',[
 Route::get('/{language}', [NewsController::class, 'langNews'])->name('lang');
 //Route::get('/{language}/{topic}/{id}', [NewsController::class, 'langTopicId'])->name('langTopicId');
 Route::get('/{language}/{topic}', [NewsController::class, 'langTopic'])->name('langTopic');
+//Route::get('/{language}/{topic}/(:any)/{id}', [NewsController::class, 'langTopicId'])->name('langTopicId');
+Route::get('/{language}/story/{topic}/{slashData?}', [NewsController::class,'topicStoryWithSlash'])->where('slashData', '(.*)');
+   

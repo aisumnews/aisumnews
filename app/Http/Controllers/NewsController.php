@@ -14,7 +14,13 @@ class NewsController extends Controller
 {
     //
 
-
+    public function topicStoryWithSlash($language, $topic, $slashData)
+    {
+        $slash_array = explode('/', $slashData);
+        $id = end($slash_array);
+        $slug = implode($slash_array);
+        return redirect()->route('topicStory', ['language' => $language, 'topic' => strtolower($topic), 'slug' => $slug, 'id' => $id]);
+    }
     public function topicStory($language, $topic, $slug, $id)
     {
         $lang = Language::where('language_code', $language)->first();
@@ -58,7 +64,8 @@ class NewsController extends Controller
             }
             
             //return $news . $prev . $next;
-            $slugc = preg_split('/\_/', $language)[1] == 'Latn' ? Str::slug($news->title, '-') : preg_replace('/\s+/u', '-', trim($news->title));
+            $news_slug = str_replace('/', '-', trim($news->title));
+            $slugc = preg_split('/\_/', $language)[1] == 'Latn' ? Str::slug($news_slug, '-') : preg_replace('/\s+/u', '-', trim($news_slug));
             //return $slugc;
             if ($slug != $slugc) {
                 return redirect()->route('topicStory', ['language' => $language, 'topic' => strtolower($topic), 'slug' => $slugc, 'id' => $id]);
@@ -107,7 +114,8 @@ class NewsController extends Controller
             }
         }
         //return $news . $prev . $next;
-        $slugc = preg_split('/\_/', $language)[1] == 'Latn' ? Str::slug($news->title, '-') : preg_replace('/\s+/u', '-', trim($news->title));
+        $news_slug = str_replace('/', '-', trim($news->title));
+        $slugc = preg_split('/\_/', $language)[1] == 'Latn' ? Str::slug($news_slug, '-') : preg_replace('/\s+/u', '-', trim($news_slug));
         //return $slugc;
         if ($slug != $slugc) {
             return redirect()->route('topicStory', ['language' => $language, 'topic' => strtolower($topic), 'slug' => $slugc, 'id' => $id]);
