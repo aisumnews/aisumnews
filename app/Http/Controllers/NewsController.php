@@ -8,7 +8,7 @@ use App\Models\News;
 use App\Models\NLLBCode;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-
+use League\CommonMark\Normalizer\SlugNormalizer;
 
 class NewsController extends Controller
 {
@@ -16,13 +16,29 @@ class NewsController extends Controller
 
     public function topicStoryWithSlash($language, $topic, $slashData)
     {
+
         $slash_array = explode('/', $slashData);
-        $id = end($slash_array);
+        $url = url()->full();
+        preg_match('/\?/', $url, $matches);
+        if (count($matches) > 0) {
+            $url = explode('?', $url);
+            $id = str_replace('%2F', '', $url[1]);
+            $id = str_replace('=', '', $id);
+        } else {
+            $id = end($slash_array);
+        }
+        //return $id;
+        //return $id;
+        //$slash_array = array_splice($slash_array, $id);
         $slug = implode($slash_array);
+        $slug = str_replace('?', '', $slug);
+        $slug = str_replace('/', '-', $slug);
+        //return $id;
         return redirect()->route('topicStory', ['language' => $language, 'topic' => strtolower($topic), 'slug' => $slug, 'id' => $id]);
     }
     public function topicStory($language, $topic, $slug, $id)
     {
+        //return $id;
         $lang = Language::where('language_code', $language)->first();
         $lang_2_letter = NLLBCode::where('nllb_code', $language)->first();
         $lang_2_letter = $lang_2_letter->language_code;
@@ -62,9 +78,10 @@ class NewsController extends Controller
                     ->orderBy('id', 'asc')
                     ->first();
             }
-            
+
             //return $news . $prev . $next;
             $news_slug = str_replace('/', '-', trim($news->title));
+            $news_slug = str_replace('?', '', trim($news_slug));
             $slugc = preg_split('/\_/', $language)[1] == 'Latn' ? Str::slug($news_slug, '-') : preg_replace('/\s+/u', '-', trim($news_slug));
             //return $slugc;
             if ($slug != $slugc) {
@@ -115,6 +132,7 @@ class NewsController extends Controller
         }
         //return $news . $prev . $next;
         $news_slug = str_replace('/', '-', trim($news->title));
+        $news_slug = str_replace('?', '', trim($news_slug));
         $slugc = preg_split('/\_/', $language)[1] == 'Latn' ? Str::slug($news_slug, '-') : preg_replace('/\s+/u', '-', trim($news_slug));
         //return $slugc;
         if ($slug != $slugc) {
@@ -191,7 +209,7 @@ class NewsController extends Controller
         } else {
             return LangNews::where('language', $language)
                 ->where('topic', $topic)
-                ->where('title','>','')
+                ->where('title', '>', '')
                 ->orderBy('published_at', 'desc')
                 ->take(1)
                 ->paginate(1);
@@ -223,7 +241,7 @@ class NewsController extends Controller
             if ($topic == 'ALL NEWS') {
                 $news = LangNews::where('language', $language)
                     ->where('id', $id)
-                    ->where('title','>','')
+                    ->where('title', '>', '')
                     ->where('active', 1)
                     ->orderBy('published_at', 'desc')
                     ->paginate(1)
@@ -231,7 +249,7 @@ class NewsController extends Controller
             } else {
                 $news = LangNews::where('language', $language)
                     ->where('id', $id)
-                    ->where('title','>','')
+                    ->where('title', '>', '')
                     ->where('active', 1)
                     ->where('topic', $topic)
                     ->orderBy('published_at', 'desc')
@@ -288,7 +306,7 @@ class NewsController extends Controller
 
                 $news = LangNews::where('active', 1)
                     ->where('language', $language)
-                    ->where('title','>','')
+                    ->where('title', '>', '')
                     ->orderBy('id', 'desc')
                     ->orderBy('published_at', 'desc')
                     ->paginate(10);
@@ -296,7 +314,7 @@ class NewsController extends Controller
 
                 $news = LangNews::where('topic', $topic)
                     ->where('language', $language)
-                    ->where('title','>','')
+                    ->where('title', '>', '')
                     ->where('active', 1)
                     ->orderBy('id', 'desc')
                     ->orderBy('published_at', 'desc')
